@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>À propos – Maximin</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Ajoute ici le style spécifique à la page à propos si besoin -->
+</head>
+<body class="a-propos">
+  <header>
+    <h1>maximin</h1>
+  </header>
+  <nav class="main-menu">
+    <a class="menu-btn" href="index.html">projets</a>
+    <a class="menu-btn active" href="a-propos.html">à propos</a>
+    <a class="menu-btn" href="contact.html">contact</a>
+  </nav>
+
+  <main>
+    <div class="about-container">
+      <p>
+        En freelance depuis maintenant quatre ans, je me charge de concevoir divers
+        supports visuels imprimés comme numériques : identités visuelles,
+        affiches, campagnes numériques, animations 2D/3D, illustrations...
+        et ce pour des clients de domaines variés comme la musique, le streaming, la mode, l’évènementiel ou encore la restauration.
+
+      </p>
+      <div class="about-image">
+        <div class="pupilles-container">
+          <div class="pupille pupille-gauche"></div>
+          <div class="pupille pupille-droite"></div>
+          <img src="tete.png" alt="Portrait de Maximin">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="cursor-text-circle">
+  <div class="circle"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const text = ' maximin.gigaud@gmail.com';
+  const radius = 50;
+  const speed = 0.009;
+  const trailSpacing = 1; // plus petit = traînée plus compacte
+  const container = document.getElementById("cursor-text-circle");
+  const circle = container.querySelector(".circle");
+
+  const letters = [];
+  const currentPositions = [];
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement("span");
+    span.textContent = text[i];
+    circle.appendChild(span);
+    letters.push(span);
+    currentPositions.push({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  }
+
+  let angleOffset = 0;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let isMoving = false;
+  let moveTimeout = null;
+
+  // Pour la transition douce entre les modes
+  let modeLerp = 0; // 0 = cercle, 1 = traînée
+
+  // Historique des positions de la souris pour la traînée
+  const mouseTrail = [{ x: mouseX, y: mouseY }];
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    isMoving = true;
+    if (moveTimeout) clearTimeout(moveTimeout);
+    moveTimeout = setTimeout(() => {
+      isMoving = false;
+    }, 300);
+  });
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function lerp2D(posA, posB, t) {
+    return {
+      x: lerp(posA.x, posB.x, t),
+      y: lerp(posA.y, posB.y, t)
+    };
+  }
+
+  function animate() {
+    angleOffset += speed;
+
+    // Transition douce du mode
+    if (isMoving) {
+      modeLerp = lerp(modeLerp, 1, 0.18); // transition plus douce
+    } else {
+      modeLerp = lerp(modeLerp, 0, 0.10);
+    }
+
+    // Mise à jour du trail pour la traînée
+    mouseTrail.unshift({ x: mouseX, y: mouseY });
+    if (mouseTrail.length > letters.length * trailSpacing) {
+      mouseTrail.length = letters.length * trailSpacing;
+    }
+
+    // Calcul des positions cibles pour chaque mode
+    const circlePositions = [];
+    const trailPositions = [];
+    const centerX = 60;
+    const centerY = 60;
+    const step = (2 * Math.PI) / letters.length;
+    for (let i = 0; i < letters.length; i++) {
+      // Cercle (centré sur la souris)
+      const angle = i * step + angleOffset;
+      const x = Math.cos(angle) * radius + mouseX;
+      const y = Math.sin(angle) * radius + mouseY;
+      circlePositions[i] = { x, y };
+
+      // Traînée : la première lettre colle au curseur, les suivantes suivent le trail
+      if (i === 0) {
+        trailPositions[i] = { x: mouseX, y: mouseY };
+      } else {
+        const trailIndex = Math.min(i * trailSpacing, mouseTrail.length - 1);
+        trailPositions[i] = mouseTrail[trailIndex];
+      }
+    }
+
+    // Interpolation douce vers la position cible mixée
+    for (let i = 0; i < letters.length; i++) {
+      const target = lerp2D(circlePositions[i], trailPositions[i], modeLerp);
+      // La première lettre suit instantanément la souris en traînée
+      const lerpAmount = (i === 0 && modeLerp > 0.8) ? 1 : 0.22;
+      currentPositions[i] = lerp2D(currentPositions[i], target, lerpAmount);
+      letters[i].style.left = `${currentPositions[i].x}px`;
+      letters[i].style.top = `${currentPositions[i].y}px`;
+    }
+
+    // Le container prend toute la fenêtre pour que les lettres soient positionnées en absolu
+    container.style.left = `0px`;
+    container.style.top = `0px`;
+    circle.style.width = `100vw`;
+    circle.style.height = `100vh`;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector('.pupilles-container');
+  const img = container.querySelector('img');
+  const pupilleG = container.querySelector('.pupille-gauche');
+  const pupilleD = container.querySelector('.pupille-droite');
+
+  // Position de base des pupilles (en % de la largeur/hauteur du conteneur)
+  const base = {
+    gauche: { x: 0.22, y: 0.41 },
+    droite: { x: 0.52, y: 0.41 }
+  };
+
+  // Limite le déplacement max (en % de la largeur/hauteur)
+  const maxMove = 0.02; // 4% du conteneur
+
+  function updatePupille(pupille, baseX, baseY, mouseX, mouseY) {
+    const rect = container.getBoundingClientRect();
+    // Centre de la pupille (en px)
+    const cx = rect.left + rect.width * baseX;
+    const cy = rect.top + rect.height * baseY;
+    // Vecteur direction souris
+    const dx = mouseX - cx;
+    const dy = mouseY - cy;
+    // Distance max en px
+    const maxPx = rect.width * maxMove;
+    // Norme
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    // Limite le déplacement
+    const ratio = dist > maxPx ? maxPx / dist : 1;
+    // Nouveau centre
+    const nx = baseX + (dx * ratio) / rect.width;
+    const ny = baseY + (dy * ratio) / rect.height;
+    pupille.style.left = (nx * 100) + '%';
+    pupille.style.top = (ny * 100) + '%';
+  }
+
+  window.addEventListener('mousemove', function(e) {
+    updatePupille(pupilleG, base.gauche.x, base.gauche.y, e.clientX, e.clientY);
+    updatePupille(pupilleD, base.droite.x, base.droite.y, e.clientX, e.clientY);
+  });
+
+  // Remet les pupilles à leur position de base quand la souris sort de la fenêtre
+  window.addEventListener('mouseleave', function() {
+    pupilleG.style.left = (base.gauche.x * 100) + '%';
+    pupilleG.style.top = (base.gauche.y * 100) + '%';
+    pupilleD.style.left = (base.droite.x * 100) + '%';
+    pupilleD.style.top = (base.droite.y * 100) + '%';
+  });
+});
+</script>
+
+</body>
+</html>

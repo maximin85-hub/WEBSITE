@@ -1,0 +1,170 @@
+[
+  {
+    "title": "Cantal",
+    "miniDescription": "Mini résumé du projet Cantal.",
+    "description": "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée. Généralement, on utilise un texte en faux latin, le Lorem ipsum ou Lipsum.",
+    "images": [
+      "https://64.media.tumblr.com/0387fe7c9f9a306d4d50264a05c5364f/bff7e0a388248bce-9a/s1280x1920/ba25f8f684f4372250430ec6e54e11f423db5c6a.pnj",
+      "https://64.media.tumblr.com/100c1f916dde7a84e8c86878051b4353/bff7e0a388248bce-14/s1280x1920/f7b085dc3983a7e495902d48ecfd99ea64269a85.pnj"
+    ],
+    "imagesLayout": "vertical",
+    "mediaDetails": [
+      { "src": "https://64.media.tumblr.com/0387fe7c9f9a306d4d50264a05c5364f/bff7e0a388248bce-9a/s1280x1920/ba25f8f684f4372250430ec6e54e11f423db5c6a.pnj", "style": "width:100%;" },
+      { "src": "https://64.media.tumblr.com/100c1f916dde7a84e8c86878051b4353/bff7e0a388248bce-14/s1280x1920/f7b085dc3983a7e495902d48ecfd99ea64269a85.pnj", "style": "width:100%;" }
+    ]
+  },
+
+  {
+    "title": "Double Flash",
+    "description": "Une description courte de mon projet 2.",
+    "images": [
+      "https://64.media.tumblr.com/0e3a55d8b6de946f5ba0acae5e711091/e374d20013751f1b-fb/s1280x1920/24fae5e05885ad5703a0e23d9abd46ce660ade94.pnj",
+      "https://64.media.tumblr.com/4b90565ce3f3d9379f73ba75c5762980/e374d20013751f1b-ce/s1280x1920/09b68926929e3a351cf66c4873be6116d910160d.pnj"
+    ],
+    "imagesLayout": "vertical",
+    "mediaDetails": [
+      { "src": "https://64.media.tumblr.com/0e3a55d8b6de946f5ba0acae5e711091/e374d20013751f1b-fb/s1280x1920/24fae5e05885ad5703a0e23d9abd46ce660ade94.pnj", "style": "width:100%;" },
+      { "src": "https://64.media.tumblr.com/4b90565ce3f3d9379f73ba75c5762980/e374d20013751f1b-ce/s1280x1920/09b68926929e3a351cf66c4873be6116d910160d.pnj", "style": "width:100%;" }
+    ]
+  }
+  ,
+  {
+    "title": "Projet 3",
+    "description": "Une description courte de mon projet 3.",
+    "images": [
+      "https://64.media.tumblr.com/eb67753a915b42aa60b0e8a966748c40/6899444b206d694a-0d/s1280x1920/3e8c9ba6276de79e10029bb3e3d6e4c0715874e3.pnj"
+    ],
+    "mediaDetails": [
+      { "src": "https://64.media.tumblr.com/eb67753a915b42aa60b0e8a966748c40/6899444b206d694a-0d/s1280x1920/3e8c9ba6276de79e10029bb3e3d6e4c0715874e3.pnj", "style": "height:100%" }
+    ]
+  },
+     {
+    "title": "DALF",
+    "description": "Description...",
+    "images": [
+      "images/2.png",
+      "images/1 2.png",
+      "images/3B.png",
+      "images/POST.gif"
+    ],
+    "imagesLayout": "grid",
+    "mediaDetails": [
+      { "src": "images/2.png", "style": "width:100%;margin:0%;" },
+      { "src": "images/1 2.png", "style": "width:100%;margin:0%;" },
+      { "src": "images/3B.png", "style": "width:100%;margin:0%;" },
+      { "src": "images/POST.gif", "style": "width:100%;margin:0%;" }
+    ] 
+  },
+    {
+    "title": "Blud",
+    "description": "Une description courte de mon projet 3.",
+    "images": [
+      "images/BLUD_COVER_3K.jpg",
+      "images/BLUD23kee2_00000_00000.jpg"
+      ],
+    "videos": [
+      "vidéos/CANVAS.mp4",
+      "vidéos/canvas2.mp4"
+    ],
+    "imagesLayout": "grid",
+    "mediaDetails": [
+      { "type": "img", "src": "images/BLUD_COVER_3K.jpg", "style": "width:100%;" },
+      { "type": "img", "src": "images/BLUD23kee2_00000_00000.jpg", "style": "width:100%;" },
+      { "type": "video", "src": "vidéos/CANVAS.mp4", "style": "width:100%;" },
+      { "type": "video", "src": "vidéos/canvas2.mp4", "style": "width:100%;" }
+    ]
+  },
+    {
+    "title": "Projet 4",
+    "description": "Une description courte de mon projet 4.",
+    "images": [
+      "https://64.media.tumblr.com/715147b3e73ed46faf4f1980e748632e/9db32e11b57fd9e4-9b/s1280x1920/fb00c34c3828a336b234b3ade6429dafbd41e4ff.pnj"
+    ]
+  }
+  ,
+  {
+    "title": "Rex de Toulouse - Manigance",
+    "description": "Une description courte de mon projet 3.",
+    "images": [
+     "images/REX_AFFICHE.png",
+      "images/POSTSCANNED copie 2.png",
+      "images/MONTAGE copie 2.png"
+      ]
+  },
+   {
+    "title": "Sean - Gaîté Lyrique",
+    "description": "Description...",
+    "images": [
+      "images/DOGGO_00196.png",
+      "images/GIFSEANCOURT.gif"
+    ]
+  },
+     {
+    "title": "Trois Six Zero - Monogramme",
+    "description": "Description...",
+    "images": [
+      "images/TSZPOST1.png",
+      "images/TSZPOST3.png",
+      "images/TSZPOST2.png"
+    ]
+  },
+ {
+    "title": "Maghla - Logotype",
+    "description": "Une description courte de mon projet 2.",
+    "images": [
+      "images/Twitter copie.png",
+      "images/previewheader.png"
+    ]
+  },
+
+  {
+    "title": "1863 Tour",
+    "description": "Une description courte de mon projet 2.",
+    "images": [
+      "images/POST.jpg",
+      "images/lino.gif",
+      "images/1.png"
+    ]
+  },
+
+  {    "title": "Projet 5",
+    "description": "Une description courte de mon projet 5.",
+    "images": [
+      "https://64.media.tumblr.com/263ad53668397289e6e8c7383d998ece/0fd19df355a21343-34/s2048x3072/0c1c7e08ece5e50445dcd22cbe1028c4f2e64ba4.jpg"
+    ]
+  }
+  ,
+  {
+    "title": "Silhouette",
+    "description": "Une description courte de mon projet 3.",
+    "images": [
+      "images/lasilhouette.jpg"
+      ],
+    "videos": [
+      "vidéos/SILHOUETTE.mp4"
+    ],
+    "mediaDetails": [
+      { "type": "img", "src": "images/lasilhouette.jpg", "style": "width:100%;" },
+      { "type": "video", "src": "vidéos/SILHOUETTE.mp4", "style": "width:100%;" }
+    ]
+  },
+
+
+  {
+    "title": "La Chasse",
+    "description": "Une description courte de mon projet 2.",
+    "images": [
+      "images/26_00000.png"
+    ]
+  },
+
+{
+    "title": "Incursion",
+    "description": "Une description courte de mon projet 2.",
+    "images": [
+      "images/COVER_INCURSION_3K_2.png",
+      "images/TRACKLIST_INCURSION_3K.png"
+    ]
+  }
+]
+
