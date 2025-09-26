@@ -1,0 +1,447 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: medium;
+  margin: 0;         /* Enlève la marge autour du body */
+  padding: 0;        /* Enlève le padding autour du body */
+  background: #ffffff;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+/* Curseur animé */
+#cursor-text-circle {
+  position: fixed;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+}
+#cursor-text-circle .circle {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#cursor-text-circle .circle span {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 70%;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: #fff;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+header h1 {
+  display: block;
+  width: 96vw;
+  margin: 0;
+  padding: 0;
+  font-size: 19vw;
+  letter-spacing: -0.1em;
+  font-weight: lighter;
+  line-height: 0.69;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+  transform: scaleX(1.75);
+}
+
+
+#projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.project-card {
+  position: relative;
+  width: 100vw;
+  height: 6vw;
+  transition: height 0.5s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden; /* Empêche le blur de déborder */
+}
+
+.project-card:hover {
+  height: 20vw;
+}
+
+/* On retire le blur global */
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 2s;
+}
+
+/* Blur uniquement sur le tiers gauche avec un pseudo-élément */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 23.3%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+  background: transparent;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+  background: none;
+  /* On utilise un backdrop-filter pour flouter ce qui est derrière */
+  background: rgba(0,0,0,0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Le cadre info reste au-dessus */
+.project-card .project-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25.3%;
+  font-size: 20pt;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  opacity: 0;
+  color: #ffffff;
+  transition: opacity 0.3s;
+  padding: 2vw;
+  text-align: left;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.project-card:hover .project-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* On retire le blur global sur l'image */
+.project-card:hover img {
+  filter: none;
+}
+
+.project-card h3,
+.project-card p {
+  margin: 0.5em 0;
+  font-size: clamp(10pt); /* Taille flexible et lisible */
+}
+
+.main-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30vw; /* Réduit le gap pour le responsive */
+  width: 100%;
+  background: #fff;
+  margin: 0;
+  padding: 0.5vw 0 0.5vw 0;
+  position: sticky;
+  top: calc(19vw * 0.69); /* hauteur du header (font-size * line-height) */
+  z-index: 100;
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000000;
+  
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: clamp(0.6rem, 1.5vw, 1rem); /* Taille flexible et lisible */
+  font-family: inherit;
+  font-weight: lighter;
+  color: #010101;
+  padding: 0.5em 1.5em;
+  min-width: 30px;   /* Largeur minimale */
+  min-height: 10px;  /* Hauteur minimale pour l’accessibilité */
+  cursor: pointer;
+  border-radius: 2em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu-btn.active{
+  background: #000000;
+  color: #fff;
+}
+
+.menu-btn:hover {
+  background: #1dd959;
+  color: #fff;
+}
+
+.contact-form {
+  max-width: 92vw;
+  margin: 5vw auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  background: #fff;
+  padding: 2em 2em 1.5em 2em;
+  border-radius: 0em;
+  border: #000000 1px solid;
+}
+
+.contact-form label {
+  font-weight: bold;
+  margin-bottom: 0.1em;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-size: 1em;
+  padding: 0.7em;
+  border: 1px solid #ccc;
+  border-radius: 2em;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.contact-form button {
+  margin-top: 1em;
+  padding: 0.8em 0;
+  font-size: 1.1em;
+  background: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.contact-form button:hover {
+  background: rgb(29, 217, 89);
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  padding: 2vw;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.75);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal-content {
+  background: #fff;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  border-radius: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-banner {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #000;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  width: 100%;
+  margin: 0;
+  padding-left: 0.5vw;
+  font-size: 4em;
+  letter-spacing: -0.1em;
+  font-weight: medium;
+  line-height: 0.69;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.modal-body {
+  display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+}
+
+.modal-description {
+  width: 25vw;
+  min-width: 15%;
+  max-width: 20%;
+  padding: 1vw 1vw 1vw 1vw;
+  font-size: 11pt;
+  line-height: 1;
+  color: #000;
+  overflow-y: auto;
+  background: #fff;
+  box-sizing: border-box;
+  border-right: 1px solid #000000;
+  height: 100%;
+}
+
+.modal-media {
+  flex: 1 1 0;
+  width: 75vw;
+  max-width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2vw;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: #fff;
+}
+
+.modal-media.horizontal {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.2vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+.modal-media.vertical {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.2vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+.modal-media.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.2vw;
+  justify-items: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.modal-img {
+  max-width: 100%; /* Correction ici */
+  max-height: 100%;
+  border-radius: 0.1em;
+  margin: 0.1vw;
+  box-sizing: border-box; /* Ajouté */
+}
+
+.modal-video {
+  max-width: 100%; /* Correction ici */
+  max-height: 100%;
+  border-radius: 0em;
+  margin: 0.1vw;
+  box-sizing: border-box; /* Ajouté */
+}
+
+.modal-close {
+  position: absolute;
+  top: 50%;
+  right: 2em;
+  transform: translateY(-50%);
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 2em;
+  padding: 0.5em 1.2em;
+  font-size: 1em;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.modal-close:hover {
+  background: #1dd959;
+  color: #fff;
+}
+
+.pupilles-container {
+  position: relative;
+  display: inline-block;
+}
+
+.pupille {
+  position: absolute;
+  background: #000;
+  border-radius: 50%;
+  width: 7.5%;
+  aspect-ratio: 1/1;
+  z-index: 1;
+}
+.pupille::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.25;
+  z-index: 2;
+}
+
+.pupille-gauche {
+  left: 32%;
+  top: 41%;
+}
+
+.pupille-droite {
+  left: 62%;
+  top: 41%;
+}
+
+.pupilles-container img {
+  display: block;
+  width: 80%; /* ou la taille souhaitée */
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+body.a-propos {
+  overflow: hidden;
+}
